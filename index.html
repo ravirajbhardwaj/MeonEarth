@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Spent on Earth</title>
+    <link rel="shortcut icon" href="./earth.png" />
+    <style>
+      body {
+        background: #000;
+        color: aliceblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-size: 2em;
+      }
+      #age {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 1em;
+      }
+      .time-unit {
+        border: 2px solid white;
+        padding: 20px;
+        margin: 10px;
+      }
+      @media (max-width: 780px) {
+        body {
+          font-size: 1em;
+        }
+        #age {
+          font-size: 0.8em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2 id="age"></h2>
+    <div id="clock">
+      <div class="time-unit" id="days">Days</div>
+      <div class="time-unit" id="hours">Hours</div>
+      <div class="time-unit" id="minutes">Minutes</div>
+      <div class="time-unit" id="seconds">Seconds</div>
+    </div>
+
+    <script>
+      var birthdate = new Date(2003, 6, 19, 0, 0, 0); // Your birthdate
+
+      function updateClock() {
+        var now = new Date();
+        var diff = now - birthdate;
+        var d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var s = Math.floor((diff % (1000 * 60)) / 1000);
+        var y = Math.floor(d / 365);
+        var dy = d % 365;
+        document.getElementById("days").innerHTML = d + " days";
+        document.getElementById("hours").innerHTML = h + " hours";
+        document.getElementById("minutes").innerHTML = m + " minutes";
+        document.getElementById("seconds").innerHTML = s + " seconds";
+        document.getElementById("age").innerHTML =
+          "My current age is: " + y + " years " + dy + " days";
+      }
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>
